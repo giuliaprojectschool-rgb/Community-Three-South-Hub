@@ -1,13 +1,70 @@
-🌳 The South Hub Community Tree
-PLAY THE THEME. MEET THE PEOPLE. JOIN THE CONVERSATION.
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The South Hub Community Tree</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-🍃
-0
-Connessioni
-⏱️
---:--
-Ultimo agg.
-🎯
--
-Tema top
-Caricamento connessioni...
+<body>
+  <div class="background-gradient"></div>
+  <div class="particles" id="particles"></div>
+
+  <main class="container">
+    <header>
+      <h1 class="title-glow">🌳 The South Hub Community Tree</h1>
+      <p class="claim">PLAY THE THEME. MEET THE PEOPLE. JOIN THE CONVERSATION.</p>
+    </header>
+
+    <section class="tree-wrapper">
+      <div class="tree-container">
+        <div class="ground"></div>
+
+        <div class="trunk">
+          <div class="trunk-texture"></div>
+        </div>
+
+        <div class="branches">
+          <div class="branch branch-1"></div>
+          <div class="branch branch-2"></div>
+          <div class="branch branch-3"></div>
+          <div class="branch branch-4"></div>
+          <div class="branch branch-5"></div>
+          <div class="branch branch-6"></div>
+        </div>
+
+        <div class="leaves-container" id="leavesContainer"></div>
+        <div class="glow-effect"></div>
+      </div>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-icon">🍃</div>
+        <div class="stat-value" id="totalLeaves">0</div>
+        <div class="stat-label">Connessioni</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value" id="lastUpdate">--:--</div>
+        <div class="stat-label">Ultimo agg.</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value" id="topTheme">-</div>
+        <div class="stat-label">Tema top</div>
+      </div>
+    </section>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Caricamento connessioni...</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
