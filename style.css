@@ -1,0 +1,497 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-green: #10271b;
+  --green: #3f792f;
+  --light-green: #91c93a;
+  --lime: #b8df44;
+  --bark-dark: #4b1626;
+  --bark: #742139;
+  --bark-light: #9e3a4d;
+  --cream: #f5f7ef;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  color: #f9fff6;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #071a13;
+}
+
+/* Sfondo notturno e discreto */
+.background-gradient {
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(165, 215, 79, 0.12), transparent 34%),
+    linear-gradient(135deg, #071b13 0%, #123529 48%, #0a2031 100%);
+  background-size: 140% 140%;
+  animation: backgroundShift 18s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundShift {
+  from {
+    background-position: 0% 30%;
+  }
+
+  to {
+    background-position: 100% 70%;
+  }
+}
+
+/* Particelle leggere */
+.particles {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(220, 255, 214, 0.78);
+  box-shadow: 0 0 12px rgba(172, 255, 173, 0.78);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(105vh);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.85;
+  }
+
+  85% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translateY(-10vh) translateX(60px);
+    opacity: 0;
+  }
+}
+
+.container {
+  width: min(1500px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header {
+  z-index: 10;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+  color: rgba(237, 255, 239, 0.76);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+}
+
+.title-glow {
+  color: #ffffff;
+  font-size: clamp(2rem, 4.6vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-shadow:
+    0 0 12px rgba(232, 255, 228, 0.65),
+    0 0 48px rgba(151, 221, 93, 0.24);
+}
+
+.claim {
+  margin-top: 12px;
+  color: rgba(244, 255, 244, 0.88);
+  font-size: clamp(0.68rem, 1.3vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.tree-wrapper {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+
+.tree-container {
+  position: relative;
+  width: min(930px, 94vw);
+  height: min(620px, 66vh);
+  min-height: 410px;
+}
+
+/* Luce dietro l'albero */
+.glow-effect {
+  position: absolute;
+  z-index: 0;
+  top: 42%;
+  left: 50%;
+  width: min(900px, 100%);
+  height: 500px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(158, 215, 79, 0.2) 0%,
+    rgba(109, 182, 87, 0.08) 40%,
+    transparent 70%
+  );
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+/* Base / terreno */
+.ground {
+  position: absolute;
+  z-index: 1;
+  bottom: 4px;
+  left: 50%;
+  width: min(680px, 82%);
+  height: 35px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(180deg, #521829, #2c1019);
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.34);
+}
+
+/* Tronco */
+.trunk {
+  position: absolute;
+  z-index: 3;
+  bottom: 28px;
+  left: 50%;
+  width: 70px;
+  height: 265px;
+  transform: translateX(-50%);
+  border-radius: 12px 12px 5px 5px;
+  background: linear-gradient(
+    90deg,
+    var(--bark-dark) 0%,
+    var(--bark) 46%,
+    var(--bark-light) 68%,
+    var(--bark-dark) 100%
+  );
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.42),
+    0 0 35px rgba(162, 54, 82, 0.22);
+  overflow: hidden;
+}
+
+.trunk-texture {
+  width: 100%;
+  height: 100%;
+  opacity: 0.42;
+  background: repeating-linear-gradient(
+    92deg,
+    transparent 0 12px,
+    rgba(44, 8, 21, 0.38) 12px 15px
+  );
+}
+
+/* Rami stilizzati */
+.branches {
+  position: absolute;
+  z-index: 2;
+  bottom: 260px;
+  left: 50%;
+  width: min(700px, 84vw);
+  height: 310px;
+  transform: translateX(-50%);
+}
+
+.branch {
+  position: absolute;
+  height: 18px;
+  border-radius: 20px;
+  transform-origin: 50% 100%;
+  background: linear-gradient(90deg, var(--bark-dark), var(--bark-light));
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.34);
+}
+
+.branch-1 {
+  bottom: 5px;
+  left: 10px;
+  width: 285px;
+  transform: rotate(-28deg);
+}
+
+.branch-2 {
+  right: 10px;
+  bottom: 5px;
+  width: 285px;
+  transform: rotate(28deg);
+}
+
+.branch-3 {
+  bottom: 75px;
+  left: 58px;
+  width: 245px;
+  transform: rotate(-18deg);
+}
+
+.branch-4 {
+  right: 58px;
+  bottom: 75px;
+  width: 245px;
+  transform: rotate(18deg);
+}
+
+.branch-5 {
+  bottom: 138px;
+  left: 140px;
+  width: 190px;
+  transform: rotate(-14deg);
+}
+
+.branch-6 {
+  right: 140px;
+  bottom: 138px;
+  width: 190px;
+  transform: rotate(14deg);
+}
+
+.branch-7 {
+  bottom: 195px;
+  left: 220px;
+  width: 150px;
+  transform: rotate(-9deg);
+}
+
+.branch-8 {
+  right: 220px;
+  bottom: 195px;
+  width: 150px;
+  transform: rotate(9deg);
+}
+
+/* Contenitore delle foglie create dal Form */
+.leaves-container {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+}
+
+/* Foglia geometrica: triangolo / poligono */
+.leaf {
+  position: absolute;
+  width: 92px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  padding: 9px;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 65%, 75% 100%, 15% 88%, 0% 42%);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.28);
+  transform: scale(0) rotate(-12deg);
+  animation:
+    leafAppear 0.72s cubic-bezier(0.22, 1.45, 0.42, 1) forwards,
+    leafFloat 7s ease-in-out infinite;
+}
+
+/* Piccola venatura di ogni foglia */
+.leaf-vein {
+  position: absolute;
+  top: 12%;
+  left: 48%;
+  width: 3px;
+  height: 83%;
+  border-radius: 999px;
+  background: rgba(255, 255, 226, 0.42);
+  transform: rotate(35deg);
+}
+
+/* Testo dentro la foglia: molto breve */
+.leaf-text {
+  position: relative;
+  z-index: 2;
+  max-width: 76px;
+  color: rgba(9, 39, 20, 0.88);
+  font-size: 0.56rem;
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes leafAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.14) rotate(6deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes leafFloat {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -7px;
+  }
+}
+
+/* Statistiche */
+.stats-bar {
+  z-index: 10;
+  display: flex;
+  gap: clamp(22px, 5vw, 70px);
+  padding: 14px 34px;
+  margin-bottom: 4px;
+  border: 1px solid rgba(235, 255, 226, 0.18);
+  border-radius: 18px;
+  background: rgba(7, 33, 20, 0.52);
+  box-shadow: 0 15px 34px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.stat-item {
+  min-width: 110px;
+  text-align: center;
+}
+
+.stat-icon {
+  font-size: 1.45rem;
+}
+
+.stat-value {
+  margin-top: 3px;
+  color: #bce969;
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  font-weight: 900;
+}
+
+.stat-label {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Box iniziale */
+.loading {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 26px 34px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(191, 234, 105, 0.5);
+  border-radius: 18px;
+  background: rgba(5, 27, 16, 0.92);
+  box-shadow: 0 0 42px rgba(159, 224, 82, 0.26);
+  text-align: center;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(188, 233, 105, 0.2);
+  border-top-color: #bce969;
+  border-radius: 50%;
+  animation: spinnerRotate 0.9s linear infinite;
+}
+
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Schermi piccoli */
+@media (max-width: 700px) {
+  body {
+    overflow: auto;
+  }
+
+  .container {
+    min-height: 100svh;
+    padding: 16px 12px;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.14em;
+  }
+
+  .claim {
+    line-height: 1.45;
+    letter-spacing: 0.08em;
+  }
+
+  .tree-container {
+    height: 490px;
+    min-height: 380px;
+  }
+
+  .trunk {
+    width: 56px;
+    height: 220px;
+  }
+
+  .branches {
+    bottom: 216px;
+    transform: translateX(-50%) scale(0.73);
+  }
+
+  .stats-bar {
+    width: 100%;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 12px 8px;
+  }
+
+  .stat-item {
+    min-width: 80px;
+  }
+
+  .leaf {
+    width: 68px;
+    height: 58px;
+  }
+
+  .leaf-text {
+    font-size: 0.46rem;
+  }
+}
