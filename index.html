@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The South Hub Community Tree</title>
+
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+
+<body>
+  <!-- Sfondo e particelle decorative -->
+  <div class="background-gradient"></div>
+  <div class="particles" id="particles"></div>
+
+  <main class="container">
+    <!-- Titolo -->
+    <header class="page-header">
+      <p class="eyebrow">SOUTHSUSTAINABILITY FESTIVAL</p>
+      <h1 class="title-glow">The South Hub Community Tree</h1>
+      <p class="claim">PLAY THE THEME. MEET THE PEOPLE. JOIN THE CONVERSATION.</p>
+    </header>
+
+    <!-- Albero -->
+    <section class="tree-wrapper" aria-label="The South Hub Community Tree">
+      <div class="tree-container" id="treeContainer">
+
+        <!-- Luce dietro la chioma -->
+        <div class="glow-effect"></div>
+
+        <!-- Terreno -->
+        <div class="ground"></div>
+
+        <!-- Tronco -->
+        <div class="trunk">
+          <div class="trunk-texture"></div>
+        </div>
+
+        <!-- Rami: sempre visibili anche quando non ci sono foglie -->
+        <div class="branches" aria-hidden="true">
+          <div class="branch branch-1"></div>
+          <div class="branch branch-2"></div>
+          <div class="branch branch-3"></div>
+          <div class="branch branch-4"></div>
+          <div class="branch branch-5"></div>
+          <div class="branch branch-6"></div>
+          <div class="branch branch-7"></div>
+          <div class="branch branch-8"></div>
+        </div>
+
+        <!-- Qui JavaScript aggiunge una foglia per ogni Form compilato -->
+        <div
+          class="leaves-container"
+          id="leavesContainer"
+          aria-live="polite"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Dati aggiornati dal Google Sheet -->
+    <section class="stats-bar" aria-label="Statistiche Community Tree">
+      <div class="stat-item">
+        <div class="stat-icon">🍃</div>
+        <div class="stat-value" id="totalLeaves">0</div>
+        <div class="stat-label">Connessioni</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value" id="lastUpdate">--:--</div>
+        <div class="stat-label">Ultimo agg.</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">🌿</div>
+        <div class="stat-value" id="topTheme">-</div>
+        <div class="stat-label">Albero</div>
+      </div>
+    </section>
+
+    <!-- Messaggio iniziale / messaggi di errore -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Il Community Tree sta crescendo...</p>
+    </div>
+  </main>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>
